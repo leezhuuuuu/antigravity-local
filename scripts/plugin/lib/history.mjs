@@ -62,8 +62,14 @@ export function getTranscript(id, previous) {
 }
 
 export function readConversation(id) {
-  const conversation = getSummary(id);
   const transcript = getTranscript(id);
+  let conversation;
+  try {
+    conversation = getSummary(id);
+  } catch (error) {
+    // A read-only sandbox may block SQLite's shared-memory file while allowing transcript reads.
+    if (!transcript || error.code !== 'INDEX_UNAVAILABLE') throw error;
+  }
   if (!conversation && !transcript) throw new CliError('NOT_FOUND', 'Desktop conversation not found.', { conversation_id: id });
   if (!transcript) throw new CliError('NO_TRANSCRIPT', 'The desktop index has this conversation, but its local transcript is unavailable.', { conversation_id: id });
   const { transcript_path, steps } = transcript;
