@@ -1,0 +1,7 @@
+{
+  "display_name": "Antigravity Local CLI",
+  "description": "Runs AgentAPI for local commands while the Antigravity desktop app is running.",
+  "command": "/bin/sh",
+  "args": ["../../run-node.sh", "bridge.mjs"],
+  "restart_policy": "on-failure"
+}

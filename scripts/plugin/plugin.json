@@ -1,0 +1,7 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "antigravity-local",
+  "displayName": "Antigravity Local CLI",
+  "version": "1.1.0",
+  "description": "Accepts local CLI requests over a private Unix socket and runs the bundled AgentAPI inside an Antigravity Sidecar."
+}
